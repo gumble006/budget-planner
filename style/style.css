@@ -1,0 +1,301 @@
+body {
+  padding:0 0px 40px 0px;
+  position: relative;
+  min-height: 600px
+}
+.header {
+	border-bottom: 1px solid gray;
+  background-color: #4ABDAC;
+	padding:10px;
+	text-align: center;
+	font-weight: bold;
+	margin-bottom:15px;
+  color: #fff;
+}
+.header img {
+  width:90px;
+}
+
+.header .logo,
+.header .title {
+  text-align: center;
+}
+
+.header .title {
+  margin-top: 10px;
+}
+
+footer {
+  position: absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  color:gray;
+}
+footer a:hover {
+  text-decoration: none
+}
+
+footer a {
+  color: gray;
+}
+
+@media screen and (min-width: 769px) {
+  .header .logo {
+    text-align: right;
+  }
+  .header .title {
+    text-align: left;
+  }
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.addForm {
+  border: 1px solid lightgray;
+  padding: 7px;
+  opacity: 1;
+  height: auto;
+  visibility: visible; 
+  transition: opacity 0.85s;
+}
+.addForm.collapsed {
+  opacity: 0;
+  height:0;
+  visibility: hidden; 
+}
+.btn.btn-primary {
+  background-color: #f7b733;
+  border-color:#997120;
+}
+.btn.btn-primary:hover,
+.btn.btn-primary:active,
+.btn.btn-primary:active:hover,
+.btn.btn-primary:focus {
+  background-color:#DDA42E;
+  border-color:#997120;
+}
+
+.btn-primary.disabled.focus, 
+.btn-primary.disabled:focus, 
+.btn-primary.disabled:hover, 
+.btn-primary[disabled].focus, 
+.btn-primary[disabled]:focus, 
+.btn-primary[disabled]:hover, 
+fieldset[disabled] .btn-primary.focus, 
+fieldset[disabled] .btn-primary:focus, 
+fieldset[disabled] .btn-primary:hover {
+  background-color:#DDA42E!important;
+  opacity: 0.4 !important;
+}
+
+.columnHeader {
+  margin-bottom: 25px
+}
+
+/*Category menu*/
+.menu {
+	padding:0;
+}
+.menu li {
+	list-style: none;
+  position: relative;
+}
+.menu li > div.category {
+  padding:10px;
+  border-radius: 4px;
+  background-color: #dfdce3;
+  margin: 0px 0px 12px 0px;
+  display: inline-block;
+  transition: 0.3s;
+  width:70%;
+} 
+@media screen and (min-width: 769px) {
+  .menu li > div.category {
+    width:50%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .menu li > div.category {
+    width:65%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .menu li > div.category {
+    width:70%;
+  }
+}
+
+.menu li > div.category:hover{
+  background-color: #fdac96;
+}
+.menu li > div.category.selected {
+	background-color: #fc4a1a;
+  border: 1px solid gray;
+  font-weight: bold;
+	cursor: pointer;
+  color:white;
+}
+.menu li > div.category p {
+  margin:5px;
+}
+.menu li > div.icons {
+  width: 45%;
+  margin-top:0px;
+  position: absolute;
+  top:0;
+  right:0;
+}
+.menu li > div.icons button {
+  float:right;
+  padding:5px;
+  margin:0 2px 0 2px;
+}
+.menu li > div.icons button:hover {
+  border-color: gray
+}
+.menu .editForm {
+  display: none;
+}
+.menu .editForm.editFormShow {
+  display: inline-block;
+}
+form.addForm.addCategory input {
+  width: 80%;
+  margin-right:5px;
+  display: inline-block!important;
+}
+@media screen and (min-width: 768px) {
+form.addForm.addCategory input {
+    width:60%;
+  }
+}
+@media screen and (min-width: 1200px) {
+form.addForm.addCategory input {
+    width:80%;
+  }
+}
+
+.chosen {
+	padding: 10px;
+	border: 1px solid gray;
+	margin-left: 5px;
+	min-width: 100px;
+}
+
+
+/*select costs*/
+
+#costs{
+  list-style: none;
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  padding:0;
+}
+
+#costs li div.costInfo {
+  display: inline-block;
+  padding: 15px 20px;
+  background-color: #F8F8F8;
+  border-radius: 4px;
+  color: #7B8585;
+  margin-bottom: 3px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+  width:77%;
+}
+
+#costs li div.costInfo b {
+  position: absolute;
+  right: 13%;
+  top:15px;
+  line-height: 16px;
+  width: 100px;
+  color: #808787;
+  text-align: right;
+}
+
+#costs li div.costInfo:hover{
+  background-color:#d8f2f1;
+  cursor: pointer;
+}
+
+#costs li div.costInfo.active{
+  color:#fff;
+  background-color:#4ABDAC;
+}
+
+#costs li div.costInfo.active b{
+  color: #fff;
+}
+
+#costs li  {
+  position: relative;
+} 
+#costs li div.costIcons  {
+  position: absolute;
+  width:30%;
+  top:0;
+  right:0;
+  padding:0;
+  text-align: right
+}
+
+#costs li div.costIcons button {
+  margin-left:5px;
+  padding:5px;
+}
+
+#costs li .editForm.name {
+  display: none;
+  width:60%;
+}
+
+#costs li .editForm.price {
+  display: none;
+  width:70%;
+  text-align: center;
+}
+
+#costs li .editForm.editFormShow {
+  display: inline-block;
+  padding-left:5px;
+}
+
+
+
+.addForm.addCost {
+  width: 100%;
+}
+
+.addCost input#addPrice{
+  text-align: right;
+  width:15%;
+  margin-right:14px;
+  display: inline-block;
+}
+
+.addCost input#addCostTitle{
+  width:60%;
+  display: inline-block;
+  margin-right:10px;
+}
+
+table td.cost,
+table th.cost {
+  text-align: right;
+  padding-right:20%!important;
+}
+/*Map section*/
+#map, #map-container { 
+  height: 280px;
+}
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
