@@ -16,40 +16,40 @@ class LocationSearch extends Component {
 		this.onFormSubmit = this.onFormSubmit.bind(this);
 	}
 
-	onInputChange(e){
-		this.setState({term:e.target.value});
+	componentDidMount() {
+		browserHistory.push('/planner');
 	}
 
 	onFormSubmit(e){
 		e.preventDefault();
-		 	
+
 		this.props.fetchMap(this.state.term);
 		this.setState({term:''});
 
-  	browserHistory.push('/details');
+		browserHistory.push('/details');
 	}
 
-	componentDidMount() {
-		browserHistory.push('/planner');
+	onInputChange(e){
+		this.setState({term:e.target.value});
 	}
 
   render() {
 
     return (
-    	<div>
-	    	<h4><strong>Where are you going?</strong></h4>
-	    	<br />
-	    	
-	    	<form onSubmit={this.onFormSubmit} className="input-group" >
-	    		<input type="text"
-		    		placeholder="Search city or name" 
-		    		onChange={this.onInputChange}
-		    		value={this.state.term}
-		    		 />
-		    	<span>     </span>
-		    	<button type="submit" className="btn btn-primary">Let's Plan!</button>
-	    	</form>
-    	</div>
+			<div>
+				<h4><strong>Where are you going?</strong></h4>
+				<br />
+
+				<form onSubmit={this.onFormSubmit} className='input-group' >
+					<input type='text'
+						placeholder='Search city or name'
+						onChange={this.onInputChange}
+						value={this.state.term}
+					/>
+					<span>     </span>
+					<button type='submit' className='btn btn-primary'>Let's Plan!</button>
+				</form>
+			</div>
     );
   }
 }

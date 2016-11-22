@@ -28,7 +28,7 @@ export default class Mapper extends Component {
       </Map>
     );
   }
-};
+}
 
 
 //<Marker position={position}>

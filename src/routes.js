@@ -1,6 +1,5 @@
 import React from 'react';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-
+import { Router, Route, browserHistory } from 'react-router';
 
 import Costs_Container from './containers/costs_container';
 import LocationSearch from './containers/locationSearch';

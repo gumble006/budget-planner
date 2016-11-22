@@ -1,9 +1,13 @@
-import axios from 'axios';
+import {  CREATE_COST, DELETE_COST, SELECT_COST, EDIT_COST, 
+CREATE_CATEGORY, DELETE_CATEGORY, EDIT_CATEGORY  } from './types';
 
-export const FETCH_MAP = 'FETCH_MAP';
+
+import axios from 'axios';
+import { FETCH_MAP } from './types';
+
 
 export function fetchMap(query) {
-	const API_KEY = "pk.eyJ1IjoiYWRhbXNncmVnMTAwIiwiYSI6ImNpdWl3ZDUwMzAxNzMyeW55Z2xldTU0ZXcifQ.TthhgwWHDLaLt5yzcuzp8A";
+	const API_KEY = 'pk.eyJ1IjoiYWRhbXNncmVnMTAwIiwiYSI6ImNpdWl3ZDUwMzAxNzMyeW55Z2xldTU0ZXcifQ.TthhgwWHDLaLt5yzcuzp8A';
 
 	const ROOT_URL = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'; 
 	const queryURI = encodeURIComponent(query);
@@ -12,70 +16,70 @@ export function fetchMap(query) {
 	const request = axios.get(url);
 
 	return { 
-		type: 'FETCH_MAP',
+		type: FETCH_MAP,
 		payload: request
-	}
+	};
 }
 
 export function createCost(catIdx,name,price) {
 	return {
-		type: 'CREATE_COST',
+		type: CREATE_COST,
 		payload: {
 			catIdx:catIdx,
 			newItem: {name,price}
 		}
-	}
+	};
 }
 
 export function deleteCost(costIdx,catIdx) {
 	return {
-		type: 'DELETE_COST',
+		type: DELETE_COST,
 		payload: {
 			costIdx,
 			catIdx
 		}
-	}
+	};
 }
 
 export function selectCost(costIdx,catIdx,active) {
 	return {
-		type: 'SELECT_COST',
+		type: SELECT_COST,
 		payload: {
 			costIdx,
 			catIdx,
 			active
 		}
-	}
+	};
 }
 
 export function editCost(costIdx,catIdx,change) {
 	return {
-		type: 'EDIT_COST',
+		type: EDIT_COST,
 		payload: {
 			costIdx,
 			catIdx,
 			change
 		}
-	}	
+	};
 }
 
 export function createCategory(name){
 	return {
-		type: 'CREATE_CATEGORY',
+		type: CREATE_CATEGORY,
 		payload: {name}
-	}
+	};
 }
 
 export function deleteCategory(catIdx){
 	return {
-		type: 'DELETE_CATEGORY',
+		type: DELETE_CATEGORY,
 		payload: {catIdx}
-	}
+	};
 }
 
 export function editCategory(catIdx,editedCategory){
 	return {
-		type: 'EDIT_CATEGORY',
+		type: EDIT_CATEGORY,
 		payload: {catIdx,editedCategory}
-	}
+	};
 }

@@ -3,7 +3,7 @@ const data =
 		{
 			"category": "Transportation",
 			"costs": [
-				{"name": "Cab fare", "price": 20.00, "active":false},
+				{"name": "Cab fare", "price": 20.00, "active":true},
 			],
 		},
 

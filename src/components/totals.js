@@ -14,10 +14,10 @@ export default (props) =>{
 	},[]);
 
 	return (
-		<div>
-	 		<h4>3. Total Costs:</h4>
-	 		<Total_Table totalList={totalList} totalCost={props.totalCost} />
-	 		<h4>Total: ${Math.abs(props.totalCost).toFixed(2)}</h4>
- 		</div>
-	)
-}
+		<div className="Totals">
+			<h4>3. Total Costs:</h4>
+			<Total_Table totalList={totalList} totalCost={props.totalCost} />
+			<h4>Total: $<span id="totalCost">{Math.abs(props.totalCost).toFixed(2)}</span></h4>
+		</div>
+	);
+};

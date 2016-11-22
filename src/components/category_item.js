@@ -10,14 +10,14 @@ class CategoryItem extends Component {
 		
 		this.state = {
 			editFormShow:false,
-			editCategory: this.props.item.category
-		}
+			editCategory:this.props.item.category
+		};
 	}
 
 	deleteHandler(){
 		this.props.deleteCategory(this.props.catIdx);
 
-		if(this.props.selected === this.props.item){
+		if (this.props.selected === this.props.item){
 			this.props.onMenuSelect(null);
 		}
 	}
@@ -29,7 +29,7 @@ class CategoryItem extends Component {
 
 	selectHandler(){
 		if (!this.state.editFormShow){
-			this.props.onMenuSelect(this.props.item)
+			this.props.onMenuSelect(this.props.item);
 		}
 	}
 
@@ -46,7 +46,7 @@ class CategoryItem extends Component {
 		const ifHidden = this.state.editFormShow ? 'hidden' : '';
 			
 		return (
-			<li key={this.props.catIdx}>
+			<li key={this.props.catIdx} className="Category-Item">
 				<div className={`category ${selected}`} onClick={this.selectHandler.bind(this)}>
 					<p className={ifHidden}>{this.props.item.category}</p>
 					<input
@@ -55,18 +55,19 @@ class CategoryItem extends Component {
 						onChange={this.onInputChange.bind(this)} 
 						type="text"
 						id="editCategory"
-						onBlur={this.editHandler.bind(this)}  />
+						onBlur={this.editHandler.bind(this)}  
+					/>
 				</div>
 				<div className="icons">
 					<button onClick={()=>this.deleteHandler()} className="btn btn-primary">
-						<span className="glyphicon glyphicon-remove" aria-hidden="true" title="Remove"></span>
+						<span className="glyphicon glyphicon-remove" aria-hidden="true" title="Remove" />
 					</button>
 					<button onClick={()=>this.editHandler()} className="btn btn-primary">
-						<span className="glyphicon glyphicon-edit" aria-hidden="true" title="Edit"></span>
+						<span className="glyphicon glyphicon-edit" aria-hidden="true" title="Edit" />
 					</button>
 				</div>
 			</li>
-		) 
+		); 
 	}
 }
 

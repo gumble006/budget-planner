@@ -13,12 +13,12 @@ class Cost extends Component {
 			editName: this.props.name,
 			editPrice: this.props.price,
 			editFormShow: false,
-		}
+		};
 		this.onInputChange = this.onInputChange.bind(this);
 	}
 
 	selectHandler(){
-		if(!this.state.editFormShow){
+		if (!this.state.editFormShow){
 			this.props.selectCost(this.props.costIdx, this.props.catIdx, !this.props.active);
 		}
 	}
@@ -33,26 +33,26 @@ class Cost extends Component {
 		const change = {
 			editedName: this.state.editName,
 			editedPrice: parseFloat(this.state.editPrice)
-		}
-		this.props.editCost(this.props.costIdx, this.props.catIdx, change)
+		};
+		this.props.editCost(this.props.costIdx, this.props.catIdx, change);
 	}
 
 	onInputChange(e){
 		const change = {};
 		change[e.target.id] = e.target.value;
-		this.setState(change)
+		this.setState(change);
 	}
 
 	render(){
 		// CSS styles from props
-		const active =this.props.active ? 'active' : ''
+		const active = this.props.active ? 'active' : '';
 		const editFormShow = this.state.editFormShow ? 'editFormShow' : '';
 		const ifHidden = this.state.editFormShow ? 'hidden' : ''; 
 		
 		return (
-			<li>
-				<div className={`costInfo ${active}`}
-					onClick={this.selectHandler.bind(this)}>
+			<li className="Cost">
+				<div className={`costInfo ${active}`} onClick={this.selectHandler.bind(this)} >
+					<form onSubmit={this.editHandler.bind(this)}>
 						<div>
 							<p className={ifHidden}>{this.props.name}</p> 
 							<input
@@ -64,8 +64,9 @@ class Cost extends Component {
 							onBlur={this.editHandler.bind(this)}  
 							/>
 						</div>
+
 						<b>
-							<span className={ifHidden}>${this.props.price.toFixed(2)}</span>
+							<span className={ifHidden}>${this.props.price.toFixed(2)}</span>	
 							<input
 							type="number"
 							step="0.01"
@@ -74,27 +75,25 @@ class Cost extends Component {
 							className={`form-control editForm price ${editFormShow}`}
 							value={Math.abs(this.state.editPrice).toFixed(2)}
 							onChange={this.onInputChange} 
-							type="text"
 							id="editPrice"
 							onBlur={this.editHandler.bind(this)} 
 							/>
 						</b>
+					</form>	
 				</div>
 				
 				<div>
 					<div className="costIcons">
 						<button onClick={this.editHandler.bind(this)} className="btn btn-primary">
-					 		<span className="glyphicon glyphicon-edit" aria-hidden="true" title="Edit entry">
-					 		</span>
-					 	</button>
+							<span className="glyphicon glyphicon-edit" aria-hidden="true" title="Edit entry" />
+						</button>
 						<button onClick={this.deleteHandler.bind(this)} className="btn btn-primary">
-							<span className="glyphicon glyphicon-remove" aria-hidden="true" title="Delete from list">
-					 		</span>
-					 	</button>
+							<span className="glyphicon glyphicon-remove" aria-hidden="true" title="Delete from list" />
+						</button>
 					</div>
 				</div>
 			</li>
-		)
+		);
 	}
 }
 

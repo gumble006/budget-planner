@@ -8,17 +8,17 @@ import { createCost } from '../actions/index';
 
 class Details extends Component {
 	constructor(props) {
-	 	super(props);
+		super(props);
 
-	 	this.state = {
-	 		newNameInput:'',
-	 		newCostInput: 0,
-	 		formCollapsed: true,
-	 	};
+		this.state = {
+			newNameInput:'',
+			newCostInput: 0,
+			formCollapsed: true,
+		};
 	}
 
 	componentDidUpdate(pvProps,pvState) {
-		if(pvState.formCollapsed){
+		if (pvState.formCollapsed){
 			this.refs.newNameInput.focus();
 		}
 	} 
@@ -30,18 +30,18 @@ class Details extends Component {
 	}
 
 	costItems() {
-		if(!this.props.selected){
-			return (<li>Please select a category first</li>)
+		if (!this.props.selected){
+			return <li>Please select a category first</li>;
 		}
 
-		if(this.props.selected.costs.length === 0){
-			return (<li><em>No expenses for this category</em></li>)
+		if (this.props.selected.costs.length === 0){
+			return <li><em>No expenses for this category</em></li>;
 		}
 
 		return this.props.selected.costs.map((c,idx)=>{
 			return (
 				<Cost key={c.name} name={c.name} costIdx={idx} catIdx={this.props.catIdx} price={c.price} active={c.active} updateList={this.props.updateList} />
-			)
+			);
 		});
 	}
 
@@ -53,8 +53,8 @@ class Details extends Component {
 		const heading = this.props.selected ? `for: ${this.props.selected.category}` : '';
 		const arrow = !this.state.formCollapsed ? 'glyphicon-chevron-up' : 'glyphicon-plus';
 
-		return(
-			<div>
+		return (
+			<div className="Details">
 				<h4 className="columnHeader">2. Select individual expenses {heading}</h4>
 
 				<ul id="costs">
@@ -64,11 +64,12 @@ class Details extends Component {
 				<button 
 					className={`btn btn-primary ${formDisabled}`} 
 					onClick={()=>{
-						if(!formDisabled){
-							this.setState({formCollapsed:!this.state.formCollapsed})
+						if (!formDisabled){
+							this.setState({formCollapsed:!this.state.formCollapsed});
 						}
-					}}>
-					<span className={`glyphicon ${arrow}`} aria-hidden="true" title="Add expense"></span>  Add expense
+					}}
+				>
+					<span className={`glyphicon ${arrow}`} aria-hidden="true" title="Add expense" />  Add expense
 				</button>
 
 				<form onSubmit={this.onFormSubmit.bind(this)} className={`addForm addCost ${formCollapsed}`}>
@@ -81,7 +82,7 @@ class Details extends Component {
 						required="required"
 						ref="newNameInput" 
 						value={this.state.newNameInput} 
-						onChange={(e)=>this.setState({newNameInput:e.target.value}) } 
+						onChange={(e)=>this.setState({newNameInput:e.target.value})} 
 					/>
 					<input 
 						type="number"
@@ -91,14 +92,14 @@ class Details extends Component {
 						min="0.00"
 						id="addPrice"
 						value={this.state.newCostInput} 
-						onChange={(e)=> this.setState({newCostInput:e.target.value}) } 
+						onChange={(e)=> this.setState({newCostInput:e.target.value})} 
 					/>
 					<button type="submit" className="btn btn-primary">
-						<span className="glyphicon glyphicon-plus" aria-hidden="true" title="Add"></span>
+						<span className="glyphicon glyphicon-plus" aria-hidden="true" title="Add" />
 					</button>
 				</form>
 			</div>
-		)
+		);
 	}
 }
 

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { createCategory } from '../actions/index';
 
-import CategoryItem from './category_item';
+import CategoryItem from './category_item'; 
 
 class CategoryMenu extends Component {
 	constructor(props) {
@@ -13,18 +13,19 @@ class CategoryMenu extends Component {
 		this.state = {
 			newCategory:'',
 			addFormCollapsed:true,
-		}
+		};
 	}
 
 	componentDidUpdate() {
-		if(!this.state.addFormCollapsed){
+		if (!this.state.addFormCollapsed){
 			this.refs.newCategory.focus();
 		}
 	}
 
 	onFormSubmit(e){
 		e.preventDefault();
-		if(this.state.newCategory){
+
+		if (this.state.newCategory){
 			this.props.createCategory(this.state.newCategory);
 		}
 		this.setState({newCategory:'', addFormCollapsed:true});
@@ -33,34 +34,33 @@ class CategoryMenu extends Component {
 	deleteHandler(item,catIdx){
 		this.props.deleteCategory(catIdx);
 
-		if(this.props.selected=== item){
+		if (this.props.selected === item){
 			this.props.onMenuSelect(null);
 		}
 		this.props.updateList();
 	}
 	
 	menuItems() {
-		if(this.props.data.length === 0){
+		if (this.props.data.length === 0){
 			return (
 				<li><em>No categories, add a category first</em></li>
-			)
+			);
 		}
 
 		return this.props.data.map((item,catIdx)=>{
-			return(
+			return (
 				<CategoryItem item={item} key={catIdx} catIdx={catIdx} selected={this.props.selected} onMenuSelect={this.props.onMenuSelect} />
-			)
+			);
 		}); 
 	}
 
 	render(){
 		// CSS styles
 		const addFormCollapsed = this.state.addFormCollapsed ? 'collapsed' : '';
-		const editFormShow = this.state.editFormShow ? 'editFormShow' : '';
 		const arrow = !this.state.addFormCollapsed ? 'glyphicon-chevron-up' : 'glyphicon-plus';  
 
-		return(
-			<div>
+		return (
+			<div className='Category-Menu'>
 				<h4 className="columnHeader">1. Select a topic area:</h4>
 				
 				<ul className="menu">
@@ -70,8 +70,8 @@ class CategoryMenu extends Component {
 				<button 
 					onClick={()=>this.setState({addFormCollapsed:!this.state.addFormCollapsed})}
 					className="btn btn-primary"
-					>
-					<span className={`glyphicon ${arrow}`} aria-hidden="true" title="Add Category"></span> Add category
+				>
+					<span className={`glyphicon ${arrow}`} aria-hidden="true" title="Add Category" /> Add category
 				</button>
 
 				<form onSubmit={this.onFormSubmit.bind(this)} className={`addForm addCategory ${addFormCollapsed}`} >
@@ -81,14 +81,15 @@ class CategoryMenu extends Component {
 						required="required" 
 						className="form-control" 
 						value={this.state.newCategory} 
-						onChange={(e)=>this.setState({newCategory:e.target.value}) } 
-						ref="newCategory" />
+						onChange={(e)=>this.setState({newCategory:e.target.value})} 
+						ref="newCategory" 
+					/>
 					<button type="submit" className="btn btn-primary">
-						<span className="glyphicon glyphicon-plus" aria-hidden="true" title="Add"></span>
+						<span className="glyphicon glyphicon-plus" aria-hidden="true" title="Add" />
 					</button>
 				</form>
 			</div>
-		)
+		);
 	}
 }
 
