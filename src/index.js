@@ -6,11 +6,10 @@ import ReduxPromise from 'redux-promise';
 
 import { Router, browserHistory } from 'react-router';
 import reducers from './reducers';
-
 import routes from './routes';
-
-
-const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+import reduxThunk from 'redux-thunk';
+ 
+const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 
 ReactDOM.render(
 	<Provider store={createStoreWithMiddleware(reducers)}>
@@ -18,4 +17,5 @@ ReactDOM.render(
 	</Provider>,
 	document.getElementById('appholder')
 );
+
 

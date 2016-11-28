@@ -55,6 +55,7 @@ class CategoryMenu extends Component {
 	}
 
 	render(){
+		
 		// CSS styles
 		const addFormCollapsed = this.state.addFormCollapsed ? 'collapsed' : '';
 		const arrow = !this.state.addFormCollapsed ? 'glyphicon-chevron-up' : 'glyphicon-plus';  

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { editCategory, deleteCategory  } from '../actions/index';
+import { editCategory, deleteCategory, selectCategory } from '../actions/index';
 
 class CategoryItem extends Component {
 	constructor(props) {
@@ -14,11 +14,15 @@ class CategoryItem extends Component {
 		};
 	}
 
+	componentWillReceiveProps(nextProps) {
+		this.setState({editCategory:nextProps.item.category});
+	}
+
 	deleteHandler(){
 		this.props.deleteCategory(this.props.catIdx);
 
 		if (this.props.selected === this.props.item){
-			this.props.onMenuSelect(null);
+			this.props.selectCategory(null);
 		}
 	}
 
@@ -29,7 +33,7 @@ class CategoryItem extends Component {
 
 	selectHandler(){
 		if (!this.state.editFormShow){
-			this.props.onMenuSelect(this.props.item);
+			this.props.selectCategory(this.props.catIdx);
 		}
 	}
 
@@ -40,23 +44,24 @@ class CategoryItem extends Component {
 	}
 
 	render(){ 
+		
 		// CSS styles
 		const selected = this.props.selected === this.props.item ? 'selected' : '';
 		const editFormShow = this.state.editFormShow ? 'editFormShow' : '';
 		const ifHidden = this.state.editFormShow ? 'hidden' : '';
-			
+
 		return (
 			<li key={this.props.catIdx} className="Category-Item">
 				<div className={`category ${selected}`} onClick={this.selectHandler.bind(this)}>
 					<p className={ifHidden}>{this.props.item.category}</p>
-					<input
-						className={`form-control editForm ${editFormShow}`}
-						value={this.state.editCategory}
-						onChange={this.onInputChange.bind(this)} 
-						type="text"
-						id="editCategory"
-						onBlur={this.editHandler.bind(this)}  
-					/>
+						<input
+							className={`form-control editForm ${editFormShow}`}
+							value={this.state.editCategory}
+							onChange={this.onInputChange.bind(this)} 
+							type="text"
+							id="editCategory"
+							onBlur={this.editHandler.bind(this)}  
+						/>
 				</div>
 				<div className="icons">
 					<button onClick={()=>this.deleteHandler()} className="btn btn-primary">
@@ -71,10 +76,8 @@ class CategoryItem extends Component {
 	}
 }
 
-
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ deleteCategory, editCategory }, dispatch);
+	return bindActionCreators({ deleteCategory, editCategory, selectCategory }, dispatch);
 }
-
 
 export default connect(null, mapDispatchToProps)(CategoryItem);

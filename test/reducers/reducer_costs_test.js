@@ -113,7 +113,7 @@ describe('CostsReducer', ()=>{
 			type:EDIT_CATEGORY, 
 			payload: 		{
 				catIdx:1,
-				category:'edited category',
+				editedCategory:'edited category',
 			}
 		};
 		

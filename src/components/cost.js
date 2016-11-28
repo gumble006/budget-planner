@@ -31,8 +31,8 @@ class Cost extends Component {
 	editHandler(){
 		this.setState({editFormShow:!this.state.editFormShow});
 		const change = {
-			editedName: this.state.editName,
-			editedPrice: parseFloat(this.state.editPrice)
+			name: this.state.editName,
+			price: parseFloat(this.state.editPrice)
 		};
 		this.props.editCost(this.props.costIdx, this.props.catIdx, change);
 	}

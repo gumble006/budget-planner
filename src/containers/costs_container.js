@@ -1,61 +1,66 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { fetchData, saveData } from '../actions';
 import CategoryMenu from '../components/category_menu';
 import Details from '../components/details';
 import Totals from '../components/totals';
 
 
-class Costs_Container extends Component {
+export class Costs_Container extends Component {
 	constructor(props){
 		super(props);
+	}
 
-		this.state = {
-			selected: null,
-		};
+	componentDidMount() {
+		this.props.fetchData();
+	}
+
+	componentWillReceiveProps(nextProps) {
+		this.props.saveData(nextProps.data);
 	}
 
   render() {
-		const totalCost = this.props.data.length !== 0 
-			?	this.props.data
-				.map((item)=> item.costs )
-				.reduce((a, b)=> a.concat(b))
-				.filter((item)=> item.active)
-				.reduce((sum, item)=> {return sum + item.price;},0) 
-			: 0;
 
-		if (!this.props) {
+		if (!this.props.data) {
 			return (
 				<div className="text-center">
 					<img src="/assets/img/ring.gif" />
 					<br />
-					<em>Loading...</em>
+					<em>Loading..</em>
 				</div>
 			);
 		}
-	
+
+		const costChk = this.props.data.filter((item)=>item.costs).length !== 0;
+		const totalCost = costChk ? this.props.data
+				.filter((item)=>item.costs)
+				.map((item)=> item.costs)
+				.reduce((a, b)=> a.concat(b))
+				.filter((item)=> item.active)
+				.reduce((sum, item)=> {return sum + item.price;},0) 
+			: 0;
+		
     return (
 			<div className="Costs-Container container">
 				<div className="row">
-					<div className="col-sm-3">
+					<div className="col-sm-4">
 						<CategoryMenu 
 							data={this.props.data} 
-							selected={this.state.selected}
-							onMenuSelect={(selected) => this.setState({selected})}
+							selected={this.props.selected}
 							updateList={this.forceUpdate.bind(this)} 
 						/> 
 					</div>
-					<div className="col-sm-5">
+					<div className="col-sm-4">
 						<Details
-							selected={this.state.selected}
-							catIdx={this.props.data.indexOf(this.state.selected)}
-							totalCost={totalCost}
+							selected={this.props.selected}
+							catIdx={this.props.data.indexOf(this.props.selected)}
 							updateList={this.forceUpdate.bind(this)}  
 						/>
 					</div>
 					<div className="col-sm-4">
 						<Totals 
-							totalCost={totalCost}
 							data={this.props.data} 
 						/>
 					</div>
@@ -65,16 +70,15 @@ class Costs_Container extends Component {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({ fetchData,saveData }, dispatch);
+}
+
 function mapStateToProps(state){
 	return { 
-		// mapData: state.mapData,
 		data: state.data,
+		selected: state.data[state.selected.catIdx]
 	};
 }
 
-export default connect(mapStateToProps)(Costs_Container);
-
-
-//<div id="map">
-//<Mapper mapData={this.props.mapData} />
-//</div>
+export default connect(mapStateToProps, mapDispatchToProps)(Costs_Container);

@@ -15,25 +15,29 @@
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.2.1",
+    "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
     "chai": "^3.5.0",
     "chai-jquery": "^2.0.0",
+    "eslint": "^3.10.2",
     "jquery": "^2.2.1",
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
+    "object-to-firebase": "^1.1.1",
     "react-addons-test-utils": "^0.14.7",
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
     "axios": "^0.15.2",
-    "babel-preset-stage-1": "^6.1.18",
     "babel-core": "^6.2.1",
     "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
+    "babel-preset-stage-1": "^6.1.18",
     "express": "^4.14.0",
+    "firebase": "^3.6.1",
     "leaflet": "^1.0.1",
     "lodash": "^3.10.1",
     "react": "^0.14.3",
@@ -43,6 +47,7 @@
     "react-router": "^2.0.1",
     "redux": "^3.0.4",
     "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.1.0",
     "webpack": "^1.13.3"
   }
 }

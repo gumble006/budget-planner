@@ -1,16 +1,27 @@
-import data from '../data';
+//import data from '../data';
 
-import {  CREATE_COST, DELETE_COST, SELECT_COST, EDIT_COST, 
+import {  FETCH_DATA, CREATE_COST, DELETE_COST, SELECT_COST, EDIT_COST, 
 CREATE_CATEGORY, DELETE_CATEGORY, EDIT_CATEGORY  } from '../../src/actions/types';
 
-const INITIAL_STATE = data;
+const INITIAL_STATE = [];
 
 export default function(state = INITIAL_STATE, action) {
 	let dataCopy = Object.assign([],state);
 
 	switch (action.type) {
+        case FETCH_DATA:
+            if(action.payload) {
+                return action.payload;
+            }
+            
+            return dataCopy;
+
         case CREATE_COST:
-			dataCopy[action.payload.catIdx].costs.push(action.payload.newItem);
+            if(!dataCopy[action.payload.catIdx].costs) {
+                dataCopy[action.payload.catIdx].costs = [action.payload.newItem];    
+            } else {
+                dataCopy[action.payload.catIdx].costs.push(action.payload.newItem);
+            }
             return dataCopy;
 
         case DELETE_COST:
@@ -28,8 +39,8 @@ export default function(state = INITIAL_STATE, action) {
 
         case CREATE_CATEGORY:
             dataCopy.push({
-                category:action.payload.name,
-                costs: [],
+                "category":action.payload.name,
+                "costs": false
             });
             return dataCopy;
 
@@ -38,7 +49,7 @@ export default function(state = INITIAL_STATE, action) {
             return dataCopy;
 
         case EDIT_CATEGORY:
-            dataCopy[action.payload.catIdx].category = action.payload.category;
+            dataCopy[action.payload.catIdx].category = action.payload.editedCategory;
             return dataCopy;
 
 		default: return state;

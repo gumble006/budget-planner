@@ -3,7 +3,7 @@ body {
   position: relative;
   min-height: 600px
 }
-.header {
+.Header {
 	border-bottom: 1px solid gray;
   background-color: #4ABDAC;
 	padding:10px;
@@ -12,16 +12,16 @@ body {
 	margin-bottom:15px;
   color: #fff;
 }
-.header img {
+.Header img {
   width:90px;
 }
 
-.header .logo,
-.header .title {
+.Header .logo,
+.Header .title {
   text-align: center;
 }
 
-.header .title {
+.Header .title {
   margin-top: 10px;
 }
 
@@ -41,10 +41,10 @@ footer a {
 }
 
 @media screen and (min-width: 769px) {
-  .header .logo {
+  .Header .logo {
     text-align: right;
   }
-  .header .title {
+  .Header .title {
     text-align: left;
   }
 }

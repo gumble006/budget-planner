@@ -1,18 +1,18 @@
 import { renderComponent , expect } from '../test_helper';
-import Costs_Container from '../../src/containers/costs_container';
+import { Costs_Container } from '../../src/containers/costs_container';
 
 describe('Costs_Container' , () => {
   let component;
-  const state={};
-  state.mapData={};
 
+  const state={};
+  
   state.data = [
     {
       "category": "Transportation",
       "costs": [
         {"name": "Cab fare", "price": 20.00, "active":false},
-        {"name": "Cab fare", "price": 20.00, "active":true},
-        {"name": "Cab fare", "price": 20.00, "active":false},
+        {"name": "Bus ticket", "price": 20.00, "active":true},
+        {"name": "Rickshaw ride", "price": 20.00, "active":false},
       ],
     },
 
@@ -23,10 +23,11 @@ describe('Costs_Container' , () => {
         {"name": "Tent", "price": 0, "active":false},
       ]
     },
-  ]; 
+  ];
+  state.selected=state.data[0]; 
 
   beforeEach(() => {
-    component = renderComponent(Costs_Container,null,state);
+    component = renderComponent(Costs_Container,state,state);
   });
 
   it('renders something', () => {
@@ -40,23 +41,6 @@ describe('Costs_Container' , () => {
   it('correctly calculates total cost',()=>{
     expect(component.find('span#totalCost')).to.contain('90.99');
   });
-
-  // describe('new cost controlled form',()=>{
-
-  //   beforeEach(()=>{
-  //     component.find('input#addCostTitle').simulate('change', 'new cost');
-  //     component.find('input#addPrice').simulate('change', '5.23');
-  //   });
-
-  //   it('allows user to enter title text',()=>{
-  //     expect(component.find('input#addCostTitle')).to.have.value('new cost');
-  //   });
-
-  //   it('allows user to enter price text',()=>{
-  //     expect(component.find('input#addPrice')).to.have.value('5.23');
-  //   });
-
-  // });
 
 
 }); 

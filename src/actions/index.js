@@ -1,23 +1,34 @@
-import {  CREATE_COST, DELETE_COST, SELECT_COST, EDIT_COST, 
-CREATE_CATEGORY, DELETE_CATEGORY, EDIT_CATEGORY  } from './types';
+import * as Firebase from 'firebase';
 
+import {  FETCH_DATA, CREATE_COST, DELETE_COST, SELECT_COST, EDIT_COST, 
+CREATE_CATEGORY, DELETE_CATEGORY, EDIT_CATEGORY, SELECT_CATEGORY  } from './types';
 
-import axios from 'axios';
-import { FETCH_MAP } from './types';
+//Initialize Firebase
+var config = {
+  apiKey: "AIzaSyA3NLrogln0Yt3ooDJVtB1M8bH0GIOWPvw",
+  authDomain: "travelplan-1896b.firebaseapp.com",
+  databaseURL: "https://travelplan-1896b.firebaseio.com",
+  storageBucket: "travelplan-1896b.appspot.com",
+  messagingSenderId: "1076425285810"
+};
 
+Firebase.initializeApp(config);
+const firebaseRef = Firebase.database().ref();
 
-export function fetchMap(query) {
-	const API_KEY = 'pk.eyJ1IjoiYWRhbXNncmVnMTAwIiwiYSI6ImNpdWl3ZDUwMzAxNzMyeW55Z2xldTU0ZXcifQ.TthhgwWHDLaLt5yzcuzp8A';
+export function saveData(data) {
+  return dispatch => {
+    firebaseRef.set(data);
+  };
+}
 
-	const ROOT_URL = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'; 
-	const queryURI = encodeURIComponent(query);
-	let url = `${ROOT_URL}${queryURI}.json?access_token=${API_KEY}`;
-	
-	const request = axios.get(url);
-
-	return { 
-		type: FETCH_MAP,
-		payload: request
+export function fetchData() {
+	return dispatch => {
+		firebaseRef.on('value', snapshot => {
+			dispatch({
+				type: FETCH_DATA,
+				payload: snapshot.val()
+			});
+		});
 	};
 }
 
@@ -83,3 +94,28 @@ export function editCategory(catIdx,editedCategory){
 		payload: {catIdx,editedCategory}
 	};
 }
+
+export function selectCategory(catIdx){
+	return {
+		type: SELECT_CATEGORY,
+		payload: {catIdx}
+	};
+}
+
+
+// import { FETCH_MAP } from './types';
+
+// export function fetchMap(query) {
+// 	const API_KEY = '***';
+
+// 	const ROOT_URL = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'; 
+// 	const queryURI = encodeURIComponent(query);
+// 	let url = `${ROOT_URL}${queryURI}.json?access_token=${API_KEY}`;
+	
+// 	const request = axios.get(url);
+
+// 	return { 
+// 		type: FETCH_MAP,
+// 		payload: request
+// 	};
+// }
