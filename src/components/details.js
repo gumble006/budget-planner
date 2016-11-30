@@ -34,7 +34,7 @@ class Details extends Component {
 			return <li>Please select a category first</li>;
 		}
 
-		if (!this.props.selected.costs){
+		if (this.props.selected.costs.length === 0 ){
 			return <li><em>No expenses for this category</em></li>;
 		}
 

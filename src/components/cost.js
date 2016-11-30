@@ -61,12 +61,11 @@ class Cost extends Component {
 			return
 		}
 
-
-		this.setState({editPrice:Math.abs(e.target.value)})
+		this.setState({editPrice:Math.abs(e.target.value)});
 	}
 
 	render(){
-		// CSS styles from props
+		// CSS styles
 		const active = this.props.active ? 'active' : '';
 		const editFormShow = this.state.editFormShow ? 'editFormShow' : '';
 		const ifHidden = this.state.editFormShow ? 'hidden' : ''; 
