@@ -60,8 +60,9 @@ class Cost extends Component {
 		if(isNaN(parseFloat(e.target.value))) {
 			return
 		}
-		
-		this.setState({editPrice:e.target.value})
+
+
+		this.setState({editPrice:Math.abs(e.target.value)})
 	}
 
 	render(){
