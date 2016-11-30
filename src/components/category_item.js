@@ -63,7 +63,7 @@ class CategoryItem extends Component {
 		const editFormShow = this.state.editFormShow ? 'editFormShow' : '';
 		const ifHidden = this.state.editFormShow ? 'hidden' : '';
 
-		return (
+		return ( 
 			<li key={this.props.catIdx} className="Category-Item">
 				<div className={`category ${selected}`} onClick={this.selectHandler.bind(this)}>
 					<p className={ifHidden}>{this.props.item.category}</p>

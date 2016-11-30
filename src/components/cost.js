@@ -53,9 +53,15 @@ class Cost extends Component {
 	}
 
 	onInputChange(e){
-		const change = {};
-		change[e.target.id] = e.target.value;
-		this.setState(change);
+		this.setState({editName:e.target.value});
+	}
+
+	onPriceChange(e){
+		if(isNaN(parseFloat(e.target.value))) {
+			return
+		}
+		
+		this.setState({editPrice:e.target.value})
 	}
 
 	render(){
@@ -88,7 +94,7 @@ class Cost extends Component {
 								required="required"
 								className={`form-control editForm price ${editFormShow}`}
 								value={Math.abs(this.state.editPrice).toFixed(2)}
-								onChange={this.onInputChange} 
+								onChange={this.onPriceChange.bind(this)} 
 								id="editPrice"
 							/>
 						</b>
