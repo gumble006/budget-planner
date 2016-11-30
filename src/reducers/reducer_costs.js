@@ -1,9 +1,9 @@
-//import data from '../data';
+import data from '../data';
 
 import {  FETCH_DATA, CREATE_COST, DELETE_COST, SELECT_COST, EDIT_COST, 
 CREATE_CATEGORY, DELETE_CATEGORY, EDIT_CATEGORY  } from '../../src/actions/types';
 
-const INITIAL_STATE = [];
+const INITIAL_STATE = data;
 
 export default function(state = INITIAL_STATE, action) {
 	let dataCopy = Object.assign([],state);

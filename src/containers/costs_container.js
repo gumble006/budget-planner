@@ -14,11 +14,11 @@ export class Costs_Container extends Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchData();
+		//this.props.fetchData();
 	}
 
 	componentWillReceiveProps(nextProps) {
-		this.props.saveData(nextProps.data);
+		//this.props.saveData(nextProps.data);
 	}
 
   render() {

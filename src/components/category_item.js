@@ -27,8 +27,21 @@ class CategoryItem extends Component {
 	}
 
 	editHandler(){
-		this.setState({editFormShow:!this.state.editFormShow});
 		this.props.editCategory(this.props.catIdx,this.state.editCategory);
+	}
+
+	onSubmitHandler(e){
+		e.preventDefault();
+
+		this.editHandler();
+		this.toggleEdit();
+	}
+
+	toggleEdit(){
+		if (this.state.editFormShow){
+			this.editHandler();
+		}
+		this.setState({editFormShow:!this.state.editFormShow});
 	}
 
 	selectHandler(){
@@ -54,20 +67,22 @@ class CategoryItem extends Component {
 			<li key={this.props.catIdx} className="Category-Item">
 				<div className={`category ${selected}`} onClick={this.selectHandler.bind(this)}>
 					<p className={ifHidden}>{this.props.item.category}</p>
-						<input
-							className={`form-control editForm ${editFormShow}`}
-							value={this.state.editCategory}
-							onChange={this.onInputChange.bind(this)} 
-							type="text"
-							id="editCategory"
-							onBlur={this.editHandler.bind(this)}  
-						/>
+						<form onSubmit={this.onSubmitHandler.bind(this)} >
+							<input
+								className={`form-control editForm ${editFormShow}`}
+								value={this.state.editCategory}
+								onChange={this.onInputChange.bind(this)} 
+								type="text"
+								id="editCategory"
+							/>
+							<button type="submit" className="hidden"></button>
+						</form>
 				</div>
 				<div className="icons">
 					<button onClick={()=>this.deleteHandler()} className="btn btn-primary">
 						<span className="glyphicon glyphicon-remove" aria-hidden="true" title="Remove" />
 					</button>
-					<button onClick={()=>this.editHandler()} className="btn btn-primary">
+					<button onClick={()=>this.toggleEdit()} className="btn btn-primary">
 						<span className="glyphicon glyphicon-edit" aria-hidden="true" title="Edit" />
 					</button>
 				</div>

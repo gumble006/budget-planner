@@ -14,6 +14,7 @@ class Cost extends Component {
 			editPrice: this.props.price,
 			editFormShow: false,
 		};
+
 		this.onInputChange = this.onInputChange.bind(this);
 	}
 
@@ -29,12 +30,26 @@ class Cost extends Component {
 	}
 
 	editHandler(){
-		this.setState({editFormShow:!this.state.editFormShow});
 		const change = {
 			name: this.state.editName,
 			price: parseFloat(this.state.editPrice)
 		};
+		
 		this.props.editCost(this.props.costIdx, this.props.catIdx, change);
+	}
+
+	onSubmitHandler(e){
+		e.preventDefault();
+
+		this.editHandler();
+		this.toggleEdit();
+	}
+
+	toggleEdit(){
+		if(this.state.editFormShow){
+			this.editHandler();
+		}
+		this.setState({editFormShow:!this.state.editFormShow});
 	}
 
 	onInputChange(e){
@@ -52,39 +67,38 @@ class Cost extends Component {
 		return (
 			<li className="Cost">
 				<div className={`costInfo ${active}`} onClick={this.selectHandler.bind(this)} >
-					<form onSubmit={this.editHandler.bind(this)}>
+					<form onSubmit={this.onSubmitHandler.bind(this)}>
 						<div>
 							<p className={ifHidden}>{this.props.name}</p> 
 							<input
-							className={`form-control editForm name ${editFormShow}`}
-							value={this.state.editName}
-							onChange={this.onInputChange} 
-							type="text"
-							id="editName"
-							onBlur={this.editHandler.bind(this)}  
+								className={`form-control editForm name ${editFormShow}`}
+								value={this.state.editName}
+								onChange={this.onInputChange} 
+								type="text"
+								id="editName"
 							/>
 						</div>
 
 						<b>
 							<span className={ifHidden}>${this.props.price.toFixed(2)}</span>	
 							<input
-							type="number"
-							step="0.01"
-							min="0.00"
-							required="required"
-							className={`form-control editForm price ${editFormShow}`}
-							value={Math.abs(this.state.editPrice).toFixed(2)}
-							onChange={this.onInputChange} 
-							id="editPrice"
-							onBlur={this.editHandler.bind(this)} 
+								type="number"
+								step="0.01"
+								min="0"
+								required="required"
+								className={`form-control editForm price ${editFormShow}`}
+								value={Math.abs(this.state.editPrice).toFixed(2)}
+								onChange={this.onInputChange} 
+								id="editPrice"
 							/>
 						</b>
+						<button type="submit" className="hidden"></button>
 					</form>	
 				</div>
 				
 				<div>
 					<div className="costIcons">
-						<button onClick={this.editHandler.bind(this)} className="btn btn-primary">
+						<button onClick={this.toggleEdit.bind(this)} className="btn btn-primary">
 							<span className="glyphicon glyphicon-edit" aria-hidden="true" title="Edit entry" />
 						</button>
 						<button onClick={this.deleteHandler.bind(this)} className="btn btn-primary">
