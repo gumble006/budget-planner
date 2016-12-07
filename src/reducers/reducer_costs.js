@@ -7,7 +7,7 @@ const INITIAL_STATE = data;
 
 export default function(state = INITIAL_STATE, action) {
 	let dataCopy = Object.assign([],state);
-
+    
 	switch (action.type) {
         case FETCH_DATA:
             if(action.payload) {
