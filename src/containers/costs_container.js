@@ -14,11 +14,13 @@ export class Costs_Container extends Component {
 	}
 
 	componentDidMount() {
+		// turn Firebase link on/off
 		//this.props.fetchData();
 	}
 
 	componentWillReceiveProps(nextProps) {
-		//this.props.saveData(nextProps.data);
+		// turn Firebase saving on/off
+		// this.props.saveData(nextProps.data);
 	}
 
   render() {
@@ -32,15 +34,6 @@ export class Costs_Container extends Component {
 				</div>
 			);
 		}
-
-		const costChk = this.props.data.filter((item)=>item.costs).length !== 0;
-		const totalCost = costChk ? this.props.data
-				.filter((item)=>item.costs)
-				.map((item)=> item.costs)
-				.reduce((a, b)=> a.concat(b))
-				.filter((item)=> item.active)
-				.reduce((sum, item)=> {return sum + item.price;},0) 
-			: 0;
 		
     return (
 			<div className="Costs-Container container">

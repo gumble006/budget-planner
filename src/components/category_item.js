@@ -15,10 +15,12 @@ class CategoryItem extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
+		// update form data if using Firebase pushes updates
 		this.setState({editCategory:nextProps.item.category});
 	}
 
 	deleteHandler(){
+		// delete category, clear item list if user deletes the current category
 		this.props.deleteCategory(this.props.catIdx);
 
 		if (this.props.selected === this.props.item){
@@ -27,6 +29,7 @@ class CategoryItem extends Component {
 	}
 
 	editHandler(){
+		// update category name
 		this.props.editCategory(this.props.catIdx,this.state.editCategory);
 	}
 
@@ -45,12 +48,14 @@ class CategoryItem extends Component {
 	}
 
 	selectHandler(){
+		// change selected category, but not if the user is using the editform
 		if (!this.state.editFormShow){
 			this.props.selectCategory(this.props.catIdx);
 		}
 	}
 
 	onInputChange(e){
+		// controlled form for inputs
 		const change = {};
 		change[e.target.id] = e.target.value;
 		this.setState(change);

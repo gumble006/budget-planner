@@ -17,6 +17,7 @@ class CategoryMenu extends Component {
 	}
 
 	componentDidUpdate() {
+		//focus on form input when form is shown
 		if (!this.state.addFormCollapsed){
 			this.refs.newCategory.focus();
 		}
@@ -32,6 +33,7 @@ class CategoryMenu extends Component {
 	}
 
 	deleteHandler(item,catIdx){
+		// delete category, clear item list / update details component if user deletes currently selected category
 		this.props.deleteCategory(catIdx);
 
 		if (this.props.selected === item){
@@ -41,12 +43,15 @@ class CategoryMenu extends Component {
 	}
 	
 	menuItems() {
+
+		// if category list is empty
 		if (this.props.data.length === 0){
 			return (
 				<li><em>No categories, add a category first</em></li>
 			);
 		}
 
+		// otherwise produce list of categories
 		return this.props.data.map((item,catIdx)=>{
 			return (
 				<CategoryItem item={item} key={catIdx} catIdx={catIdx} selected={this.props.selected} onMenuSelect={this.props.onMenuSelect} />

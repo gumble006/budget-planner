@@ -3,6 +3,7 @@ import Total_Table from './total_table';
 
 export default (props) =>{
 
+	// Checks for empty Firebase entries, then add up total cost 
 	const costChk = props.data.filter((item)=>item.costs).length > 0;
 	const totalCost = costChk ? props.data
 			.filter((item)=>item.costs)
@@ -12,6 +13,7 @@ export default (props) =>{
 			.reduce((sum, item)=> {return sum + item.price;},0) 
 		: 0;
 
+	// Checks for empty Firebase entries, then create total list 
 	const totalList = props.data.reduce((accum,item)=>{
 		
 		let activeCosts = [];

@@ -18,13 +18,16 @@ class Details extends Component {
 	}
 
 	componentDidUpdate(pvProps,pvState) {
+		//focus on form input when form is shown
 		if (pvState.formCollapsed){
 			this.refs.newNameInput.focus();
 		}
 	} 
 
 	onFormSubmit(e){
+		// add new cost and clear form
 		e.preventDefault();
+
 		this.props.createCost(this.props.catIdx, this.state.newNameInput, parseFloat(this.state.newCostInput));
 		this.setState({newNameInput:'', newCostInput:null, formCollapsed:true});
 	}

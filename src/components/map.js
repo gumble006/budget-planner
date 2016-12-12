@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 
+// This component is not being used currently
 
 export default class Mapper extends Component {
   constructor() {
@@ -29,16 +30,3 @@ export default class Mapper extends Component {
     );
   }
 }
-
-
-//<Marker position={position}>
-//   <Popup>
-//     <span>A pretty CSS3 popup. <br/> Easily customizable.</span>
-//   </Popup>
-// </Marker>
-
-// lat: 
-//       lng: 
-//       zoom: 10,
- // lat: this.props.mapData.features[0].center[1],
- //      lng: this.props.mapData.features[0].center[0],

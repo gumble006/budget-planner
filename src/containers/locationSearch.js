@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchMap } from '../actions/index';
 
+// This component is not being used currently
 
 class LocationSearch extends Component {
 	constructor(props) {
