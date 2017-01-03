@@ -41,8 +41,6 @@ class Details extends Component {
 			return <li><em>No expenses for this category</em></li>;
 		}
 
-		console.log(this.props.selected.costs);
-
 		return this.props.selected.costs.map((c,idx)=>{
 			return (
 				<Cost key={c.name} name={c.name} costIdx={idx} catIdx={this.props.catIdx} price={c.price} active={c.active} updateList={this.props.updateList} />
