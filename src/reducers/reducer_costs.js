@@ -6,51 +6,50 @@ CREATE_CATEGORY, DELETE_CATEGORY, EDIT_CATEGORY  } from '../../src/actions/types
 const INITIAL_STATE = data;
 
 export default function(state = INITIAL_STATE, action) {
-	let dataCopy = Object.assign([],state);
-    
+	let stateCopy = Object.assign([],state);
+    let p = action.payload;
+
 	switch (action.type) {
         case FETCH_DATA:
-            if(action.payload) {
-                return action.payload;
-            }
+            if(p) => return p
             
-            return dataCopy;
+            return stateCopy;
 
         case CREATE_COST:
-            if(!dataCopy[action.payload.catIdx].costs) {
-                dataCopy[action.payload.catIdx].costs = [action.payload.newItem];    
+            if(!stateCopy[p.catIdx].costs) {
+                stateCopy[p.catIdx].costs = [p.newItem];    
             } else {
-                dataCopy[action.payload.catIdx].costs.push(action.payload.newItem);
+                stateCopy[p.catIdx].costs.push(p.newItem);
             }
-            return dataCopy;
+            return stateCopy;
 
         case DELETE_COST:
-            dataCopy[action.payload.catIdx].costs.splice(action.payload.costIdx,1);
-            return dataCopy;
+            stateCopy[p.catIdx].costs.splice(p.costIdx,1);
+            return stateCopy;
 
         case EDIT_COST:
-            dataCopy[action.payload.catIdx].costs[action.payload.costIdx].name = action.payload.change.name;
-            dataCopy[action.payload.catIdx].costs[action.payload.costIdx].price = action.payload.change.price;
-            return dataCopy;
+            stateCopy[p.catIdx].costs[p.costIdx].name = p.change.name;
+            stateCopy[p.catIdx].costs[p.costIdx].price = p.change.price;
+            return stateCopy;
 
         case SELECT_COST:
-            dataCopy[action.payload.catIdx].costs[action.payload.costIdx].active = action.payload.active;
-            return dataCopy;
+            stateCopy[p.catIdx].costs[p.costIdx].active = p.active;
+            return stateCopy;
 
         case CREATE_CATEGORY:
-            dataCopy.push({
-                "category":action.payload.name,
+            stateCopy.push({
+                "category":p.name,
                 "costs": false
             });
-            return dataCopy;
+            return stateCopy;
 
         case DELETE_CATEGORY:
-            dataCopy.splice(action.payload.catIdx,1);
-            return dataCopy;
+            stateCopy.splice(p.catIdx,1);
+            return stateCopy;
 
         case EDIT_CATEGORY:
-            dataCopy[action.payload.catIdx].category = action.payload.editedCategory;
-            return dataCopy;
+            stateCopy[p.catIdx].category = p.editedCategory;
+            return stateCopy;
 
 		default: return state;
 	}
