@@ -37,9 +37,11 @@ class Details extends Component {
 			return <li>Please select a category first</li>;
 		}
 
-		if (this.props.selected.costs.length === 0 ){
+		if (!this.props.selected.costs.length){
 			return <li><em>No expenses for this category</em></li>;
 		}
+
+		console.log(this.props.selected.costs);
 
 		return this.props.selected.costs.map((c,idx)=>{
 			return (

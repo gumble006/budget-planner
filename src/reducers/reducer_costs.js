@@ -11,7 +11,7 @@ export default function(state = INITIAL_STATE, action) {
 
 	switch (action.type) {
         case FETCH_DATA:
-            if(p) => return p
+            if(p) { return p }
             
             return stateCopy;
 
