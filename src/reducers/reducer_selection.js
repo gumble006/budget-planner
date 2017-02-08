@@ -1,14 +1,12 @@
 import { SELECT_CATEGORY } from '../../src/actions/types';
 
-const INITIAL_STATE = {catIdx:null};
+const INITIAL_STATE = { catIdx: null };
 
-export default function(state=INITIAL_STATE, action) {
-	let stateCopy = Object.assign({},state);
-	
-	switch (action.type) {
-		case 'SELECT_CATEGORY':
-			return action.payload;
+export default function (state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case SELECT_CATEGORY:
+      return action.payload;
 
-		default: return state;
-	}
+    default: return state;
+  }
 }

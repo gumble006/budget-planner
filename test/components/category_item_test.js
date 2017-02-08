@@ -1,15 +1,15 @@
-import { renderComponent , expect } from '../test_helper';
+import { renderComponent, expect } from '../test_helper';
 import CategoryItem from '../../src/components/category_item';
 import data from '../../src/data';
 
-describe('Category-Item' , () => {
+describe('Category-Item', () => {
   let component; 
   
-  let props = {
-  	item:data[0],
-  	catIdx:0,
-  	selected:data[0],
-  }
+  const props = {
+    item: data[0],
+    catIdx: 0,
+    selected: data[0],
+  };
 
   beforeEach(() => {
     component = renderComponent(CategoryItem, props);
@@ -27,16 +27,13 @@ describe('Category-Item' , () => {
     expect(component.find('div.selected')).to.exist; 
   });
 
-  describe('edit category controlled form',()=>{
-
-    beforeEach(()=>{
+  describe('edit category controlled form', () => {
+    beforeEach(() => {
       component.find('input#editCategory').simulate('change', 'edited category');
     });
 
-    it('edit category is controlled [allows user to enter text]',()=>{
+    it('edit category is controlled [allows user to enter text]', () => {
       expect(component.find('input#editCategory')).to.have.value('edited category');
     });
-
   });
-
 });

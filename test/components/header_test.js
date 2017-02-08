@@ -1,7 +1,7 @@
-import { renderComponent , expect } from '../test_helper';
+import { renderComponent, expect } from '../test_helper';
 import Header from '../../src/components/header';
 
-describe('Details' , () => {
+describe('Details', () => {
   let component; 
 
   beforeEach(() => {
@@ -11,5 +11,4 @@ describe('Details' , () => {
   it('renders something', () => {
     expect(component).to.exist; 
   });
-
 }); 

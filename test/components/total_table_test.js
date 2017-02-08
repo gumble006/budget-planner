@@ -1,24 +1,24 @@
-import { renderComponent , expect } from '../test_helper';
-import Total_Table from '../../src/components/total_table';
+import { renderComponent, expect } from '../test_helper';
+import TotalTable from '../../src/components/total_table';
 
-describe('Total_Table' , () => {
+describe('Total_Table', () => {
   let component;
 
-  let data = [{
-		"category": "Accomodations",
-		"costs": [
-			{"name": "Tent", "price": 20, "active":true},
-			{"name": "Option 3", "price": 10, "active":true},
-		]
-	}];
+  const data = [{
+    category: 'Accomodations',
+    costs: [
+      { name: 'Tent', price: 20, active: true },
+      { name: 'Option 3', price: 10, active: true },
+    ],
+  }];
 
-  let props = {
-  	totalList:data,
-  	totalCost: 30.00
+  const props = {
+    totalList: data,
+    totalCost: 30.00,
   };
 
   beforeEach(() => {
-    component = renderComponent(Total_Table, props);
+    component = renderComponent(TotalTable, props);
   });
 
   it('renders something', () => {
@@ -36,7 +36,5 @@ describe('Total_Table' , () => {
   it('has correct number of costs', () => {
     expect(component.find('td.cost').length).to.equal(3); 
   });
-
 }); 
-
 

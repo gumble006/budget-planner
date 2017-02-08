@@ -1,33 +1,33 @@
-import { renderComponent , expect } from '../test_helper';
-import { Costs_Container } from '../../src/containers/costs_container';
+import { renderComponent, expect } from '../test_helper';
+import CostsContainer from '../../src/containers/costs_container';
 
-describe('Costs_Container' , () => {
+describe('CostsContainer', () => {
   let component;
 
-  const state={};
+  const state = {};
   
   state.data = [
     {
-      "category": "Transportation",
-      "costs": [
-        {"name": "Cab fare", "price": 20.00, "active":false},
-        {"name": "Bus ticket", "price": 20.00, "active":true},
-        {"name": "Rickshaw ride", "price": 20.00, "active":false},
+      category: 'Transportation',
+      costs: [
+        { name: 'Cab fare', price: 20.00, active: false },
+        { name: 'Bus ticket', price: 20.00, active: true },
+        { name: 'Rickshaw ride', price: 20.00, active: false },
       ],
     },
 
     {
-      "category": "Accomodations",
-      "costs": [
-        {"name": "Hotel", "price": 70.99, "active":true},
-        {"name": "Tent", "price": 0, "active":false},
-      ]
+      category: 'Accomodations',
+      costs: [
+        { name: 'Hotel', price: 70.99, active: true },
+        { name: 'Tent', price: 0, active: false },
+      ],
     },
   ];
-  state.selected=state.data[0]; 
+  state.selected = state.data[0]; 
 
   beforeEach(() => {
-    component = renderComponent(Costs_Container,state,state);
+    component = renderComponent(CostsContainer, state, state);
   });
 
   it('renders something', () => {
@@ -38,9 +38,7 @@ describe('Costs_Container' , () => {
     expect(component).to.have.class('Costs-Container'); 
   });
 
-  it('correctly calculates total cost',()=>{
+  it('correctly calculates total cost', () => {
     expect(component.find('span#totalCost')).to.contain('90.99');
   });
-
-
 }); 
