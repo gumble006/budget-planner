@@ -56,7 +56,7 @@ class CategoryMenu extends Component {
     return this.props.data.map((item, catIdx) => (
       <CategoryItem
         item={item} 
-        key={item.category} 
+        key={item.id} 
         catIdx={catIdx} 
         selected={this.props.selected} 
         onMenuSelect={this.props.onMenuSelect} 

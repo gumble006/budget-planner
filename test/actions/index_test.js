@@ -14,12 +14,10 @@ describe('Actions', () => {
 
     it('has correct payload', () => {
       const action = createCost(1, 'new cost', 12.12);
-      expect(action.payload).to.deep.equal(
-        { 
-          catIdx: 1, 
-          newItem: { name: 'new cost', price: 12.12 }, 
-        },
-      );
+      expect(action.payload.catIdx).to.equal(1);
+      expect(action.payload.newItem.name).to.equal('new cost');
+      expect(action.payload.newItem.price).to.equal(12.12);
+      expect(action.payload.newItem.id).to.exist;
     });
   });
 
@@ -81,7 +79,8 @@ describe('Actions', () => {
     it('has correct payload', () => {
       const action = createCategory('new category');
 
-      expect(action.payload).to.deep.equal({ name: 'new category' });
+      expect(action.payload.name).to.equal('new category');
+      expect(action.payload.id).to.exist;
     });
   });
 

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { fetchData, saveData } from '../actions';
 import CategoryMenu from '../components/category_menu';
-import Details from '../components/details';
+import CostMenu from '../components/cost_menu';
 import Totals from '../components/totals';
 
 class CostsContainer extends Component {
@@ -41,7 +41,7 @@ class CostsContainer extends Component {
             /> 
           </div>
           <div className="col-sm-4">
-            <Details
+            <CostMenu
               selected={this.props.selected}
               catIdx={this.props.data.indexOf(this.props.selected)}
               updateList={this.forceUpdate.bind(this)}

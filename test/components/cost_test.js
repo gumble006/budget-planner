@@ -1,15 +1,19 @@
 import { renderComponent, expect } from '../test_helper';
-import Cost from '../../src/components/cost';
+import CostItem from '../../src/components/cost_item';
 
-describe('Cost', () => {
+describe('CostItem', () => {
   let component; 
   
   const props = {
-    name: 'Housing', costIdx: 0, catIdx: 0, price: 5, active: true,
+    name: 'Housing', 
+    costIdx: 0, 
+    catIdx: 0, 
+    price: 5, 
+    active: true,
   };
 
   beforeEach(() => {
-    component = renderComponent(Cost, props);
+    component = renderComponent(CostItem, props);
   });
 
   it('renders something', () => {
@@ -17,7 +21,7 @@ describe('Cost', () => {
   });
 
   it('has correct component class', () => {
-    expect(component).to.have.class('Cost'); 
+    expect(component).to.have.class('CostItem'); 
   });
 
   it('correctly applies active class', () => {

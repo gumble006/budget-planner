@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Cost from './cost';
+import CostItem from './cost_item';
 import { createCost } from '../actions/index';
 
-class Details extends Component {
+class CostMenu extends Component {
   constructor(props) {
     super(props);
 
@@ -46,8 +46,8 @@ class Details extends Component {
     }
 
     return this.props.selected.costs.map((c, idx) => (
-      <Cost 
-        key={c.name} 
+      <CostItem 
+        key={c.id} 
         name={c.name} 
         costIdx={idx} 
         catIdx={this.props.catIdx} 
@@ -66,7 +66,7 @@ class Details extends Component {
     const arrow = !this.state.formCollapsed ? 'glyphicon-chevron-up' : 'glyphicon-plus';
 
     return (
-      <div className="Details">
+      <div className="CostMenu">
         <h4 className="columnHeader">2. Select individual expenses {heading}</h4>
 
         <ul id="costs">
@@ -114,7 +114,7 @@ class Details extends Component {
   }
 }
 
-Details.propTypes = {
+CostMenu.propTypes = {
   updateList: React.PropTypes.func.isRequired,
   catIdx: React.PropTypes.number.isRequired,
   selected: React.PropTypes.object.isRequired,
@@ -125,4 +125,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ createCost }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(Details);
+export default connect(null, mapDispatchToProps)(CostMenu);

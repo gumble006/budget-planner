@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { deleteCost, selectCost, editCost } from '../actions/index';
 
-class Cost extends Component {
+class CostItem extends Component {
 
   constructor(props) {
     super(props);
@@ -76,7 +76,7 @@ class Cost extends Component {
     const ifHidden = this.state.editFormShow ? 'hidden' : ''; 
 
     return (
-      <li className="Cost">
+      <li className="CostItem">
         <div className={`costInfo ${active}`} onClick={this.selectHandler} >
           <form onSubmit={this.onSubmitHandler}>
             <div>
@@ -126,7 +126,7 @@ class Cost extends Component {
   }
 }
 
-Cost.propTypes = {
+CostItem.propTypes = {
   price: React.PropTypes.number.isRequired,
   costIdx: React.PropTypes.number.isRequired,
   catIdx: React.PropTypes.number.isRequired,
@@ -142,5 +142,5 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ deleteCost, selectCost, editCost }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(Cost);
+export default connect(null, mapDispatchToProps)(CostItem);
 

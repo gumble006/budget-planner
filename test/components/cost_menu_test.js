@@ -1,14 +1,15 @@
 import { renderComponent, expect } from '../test_helper';
-import Details from '../../src/components/details';
+import CostMenu from '../../src/components/cost_menu';
 
-describe('Details', () => {
+describe('CostMenu', () => {
   let component; 
   
   const data = [
     { category: 'Transportation',
+      id: '2MX',
       costs: [
-        { name: 'Cab', price: 20.00, active: false },
-        { name: 'PediCab', price: 10.00, active: true },
+        { name: 'Cab', price: 20.00, active: false, id: '5A' },
+        { name: 'PediCab', price: 10.00, active: true, id: 'V2' },
       ],
     }];
 
@@ -19,7 +20,7 @@ describe('Details', () => {
   };
 
   beforeEach(() => {
-    component = renderComponent(Details, props);
+    component = renderComponent(CostMenu, props);
   });
 
   it('renders something', () => {
@@ -27,7 +28,7 @@ describe('Details', () => {
   });
 
   it('has correct component class', () => {
-    expect(component).to.have.class('Details'); 
+    expect(component).to.have.class('CostMenu'); 
   });
 
   it('shows correct number of list items', () => {

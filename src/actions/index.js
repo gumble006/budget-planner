@@ -1,4 +1,5 @@
 import * as Firebase from 'firebase';
+import uuid from 'uuid';
 
 import {  FETCH_DATA, CREATE_COST, DELETE_COST, SELECT_COST, EDIT_COST, 
 CREATE_CATEGORY, DELETE_CATEGORY, EDIT_CATEGORY, SELECT_CATEGORY  } from './types';
@@ -33,11 +34,13 @@ export function fetchData() {
 }
 
 export function createCost(catIdx, name, price) {
+  const id = uuid();
+
   return {
     type: CREATE_COST,
     payload: {
       catIdx,
-      newItem: { name, price },
+      newItem: { name, price, id },
     },
   };
 }
@@ -75,9 +78,10 @@ export function editCost(costIdx, catIdx, change) {
 }
 
 export function createCategory(name) {
+  const id = uuid();
   return {
     type: CREATE_CATEGORY,
-    payload: { name },
+    payload: { name, id },
   };
 }
 

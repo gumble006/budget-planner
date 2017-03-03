@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
 // This component is not being used currently
 
 class LocationSearch extends Component {
@@ -58,9 +55,5 @@ LocationSearch.propTypes = {
   fetchMap: React.PropTypes.func.isRequired,
 };
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchMap }, dispatch);
-}
 
-
-export default connect(null, mapDispatchToProps)(LocationSearch);
+export default LocationSearch;
