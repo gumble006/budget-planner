@@ -3,10 +3,8 @@ const path = require('path');
 const saveFile = require('../server/csv/saveFile');
 const bodyParser = require('body-parser');
 
-
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 const app = express();
-
 
 app.use(express.static(path.join(__dirname, '/../')));
 app.use(bodyParser.json());
@@ -17,6 +15,8 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../index.html'));
 });
 
+const server = app.listen(port, () => { 
+  console.log(`@@@server started on ${port}@@@`);
+});
 
-app.listen(port);
-console.log(`@@@server started on ${port}@@@`);
+module.exports = server;

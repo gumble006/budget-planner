@@ -9,6 +9,7 @@
     "dev:watch": "webpack --progress --colors --watch",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "serve": "nodemon ./server/server.js",
+    "test:server": "NODE_ENV=test nodemon --exec 'mocha --recursive -R min'",
     "test:watch": "npm run test -- --watch",
     "postinstall": "webpack -p",
     "start": "node ./server/server.js"
@@ -36,6 +37,7 @@
     "mocha": "^2.4.5",
     "object-to-firebase": "^1.1.1",
     "react-addons-test-utils": "^0.14.7",
+    "supertest": "^3.0.0",
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {

@@ -5,7 +5,7 @@ import { saveFile } from '../actions';
 
 const saveMenu = (props) => {
   const handleClick = (fileType) => {
-    saveFile(fileType, props.data);
+    props.saveFile(fileType, props.data);
   };
 
   return (
