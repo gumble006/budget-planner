@@ -1,37 +1,9 @@
-import * as Firebase from 'firebase';
+import axios from 'axios';
 import uuid from 'uuid';
+import fileDownload from 'react-file-download';
 
-import {  FETCH_DATA, CREATE_COST, DELETE_COST, SELECT_COST, EDIT_COST, 
-CREATE_CATEGORY, DELETE_CATEGORY, EDIT_CATEGORY, SELECT_CATEGORY  } from './types';
-
-// Initialize Firebase
-const config = {
-  apiKey: 'AIzaSyA3NLrogln0Yt3ooDJVtB1M8bH0GIOWPvw',
-  authDomain: 'travelplan-1896b.firebaseapp.com',
-  databaseURL: 'https://travelplan-1896b.firebaseio.com',
-  storageBucket: 'travelplan-1896b.appspot.com',
-  messagingSenderId: '1076425285810',
-};
-
-Firebase.initializeApp(config);
-const firebaseRef = Firebase.database().ref();
-
-export function saveData(data) {
-  return (dispatch) => {
-    firebaseRef.set(data);
-  };
-}
-
-export function fetchData() {
-  return (dispatch) => {
-    firebaseRef.on('value', (snapshot) => {
-      dispatch({
-        type: FETCH_DATA,
-        payload: snapshot.val(),
-      });
-    });
-  };
-}
+import {  CREATE_COST, DELETE_COST, SELECT_COST, EDIT_COST, 
+CREATE_CATEGORY, DELETE_CATEGORY, EDIT_CATEGORY, SELECT_CATEGORY, SAVE_FILE  } from './types';
 
 export function createCost(catIdx, name, price) {
   const id = uuid();
@@ -40,7 +12,7 @@ export function createCost(catIdx, name, price) {
     type: CREATE_COST,
     payload: {
       catIdx,
-      newItem: { name, price, id },
+      newItem: { name, price, id, active: false },
     },
   };
 }
@@ -106,19 +78,25 @@ export function selectCategory(catIdx) {
   };
 }
 
+export function saveFile(type, data) {
+  const config = {
+    method: 'post',
+    url: '/save',
+    data,
+    responseType: 'blob',
+  };
 
-// import { FETCH_MAP } from './types';
+  const request = axios(config)
+  .then((response) => {
+    fileDownload(response.data, 'MyPlan.csv');
+  })
+  .catch((err) => {
+    alert(`Unable to download saved file:\n${err}`);
+  });
 
-// export function fetchMap(query) {
-//   const API_KEY = '***';
+  return {
+    type: SAVE_FILE,
+    payload: request,
+  };
+}
 
-//   const ROOT_URL = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'; 
-//   const queryURI = encodeURIComponent(query);
-//   let url = `${ROOT_URL}${queryURI}.json?access_token=${API_KEY}`;
-//   const request = axios.get(url);
-
-//   return { 
-//     type: FETCH_MAP,
-//     payload: request
-//   };
-// }

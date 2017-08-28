@@ -101,7 +101,7 @@ class CategoryItem extends Component {
 
 CategoryItem.propTypes = {
   catIdx: React.PropTypes.number.isRequired,
-  selected: React.PropTypes.object.isRequired,
+  selected: React.PropTypes.object,
   editCategory: React.PropTypes.func.isRequired,
   deleteCategory: React.PropTypes.func.isRequired,
   selectCategory: React.PropTypes.func.isRequired,

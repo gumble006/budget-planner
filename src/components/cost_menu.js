@@ -117,7 +117,7 @@ class CostMenu extends Component {
 CostMenu.propTypes = {
   updateList: React.PropTypes.func.isRequired,
   catIdx: React.PropTypes.number.isRequired,
-  selected: React.PropTypes.object.isRequired,
+  selected: React.PropTypes.object,
   createCost: React.PropTypes.func.isRequired,
 };
 

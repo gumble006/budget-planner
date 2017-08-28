@@ -1,23 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-import { fetchData, saveData } from '../actions';
 import CategoryMenu from '../components/category_menu';
 import CostMenu from '../components/cost_menu';
 import Totals from '../components/totals';
 
 class CostsContainer extends Component {
-
-  componentDidMount() {
-    // turn Firebase link on/off
-    // this.props.fetchData();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // turn Firebase saving on/off
-    // this.props.saveData(nextProps.data);
-  }
 
   render() {
     if (!this.props.data) {
@@ -60,12 +48,8 @@ class CostsContainer extends Component {
 
 CostsContainer.propTypes = {
   data: React.PropTypes.array,
-  selected: React.PropTypes.object.isRequired,
+  selected: React.PropTypes.object,
 };
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchData, saveData }, dispatch);
-}
 
 function mapStateToProps(state) {
   return { 
@@ -74,4 +58,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CostsContainer);
+export default connect(mapStateToProps, null)(CostsContainer);

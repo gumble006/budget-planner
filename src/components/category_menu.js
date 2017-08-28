@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { createCategory } from '../actions/index';
-
 import CategoryItem from './category_item'; 
+
 
 class CategoryMenu extends Component {
   constructor(props) {
@@ -14,7 +14,6 @@ class CategoryMenu extends Component {
       newCategory: '',
       addFormCollapsed: true,
     };
-
     this.onFormSubmit = this.onFormSubmit.bind(this); 
   }
 
@@ -27,25 +26,13 @@ class CategoryMenu extends Component {
 
   onFormSubmit(e) {
     e.preventDefault();
-
     if (this.state.newCategory) {
       this.props.createCategory(this.state.newCategory);
     }
     this.setState({ newCategory: '', addFormCollapsed: true });
   }
 
-  deleteHandler(item, catIdx) {
-  // delete category, clear item list / update details component if user deletes currently selected category
-    this.props.deleteCategory(catIdx);
-
-    if (this.props.selected === item) {
-      this.props.onMenuSelect(null);
-    }
-    this.props.updateList();
-  }
-
   menuItems() {
-    // if category list is empty
     if (this.props.data.length === 0) {
       return (
         <li><em>No categories, add a category first</em></li>
@@ -59,7 +46,6 @@ class CategoryMenu extends Component {
         key={item.id} 
         catIdx={catIdx} 
         selected={this.props.selected} 
-        onMenuSelect={this.props.onMenuSelect} 
       />
     )); 
   }
@@ -71,7 +57,7 @@ class CategoryMenu extends Component {
 
     return (
       <div className="Category-Menu">
-        <h4 className="columnHeader">1. Select a topic area:</h4>
+        <h4 className="columnHeader">1. Select/create a category:</h4>
         <ul className="menu">
           {this.menuItems()}
         </ul>
@@ -103,17 +89,14 @@ class CategoryMenu extends Component {
 }
 
 CategoryMenu.propTypes = {
-  deleteCategory: React.PropTypes.func.isRequired,
   createCategory: React.PropTypes.func.isRequired,
   updateList: React.PropTypes.func.isRequired,
-  onMenuSelect: React.PropTypes.func.isRequired,
-  selected: React.PropTypes.object.isRequired,
+  selected: React.PropTypes.object,
   data: React.PropTypes.array.isRequired,
 };
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ createCategory }, dispatch);
 }
-
 
 export default connect(null, mapDispatchToProps)(CategoryMenu);
